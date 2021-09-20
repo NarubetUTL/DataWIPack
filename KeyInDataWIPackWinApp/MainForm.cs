@@ -32,7 +32,6 @@ namespace KeyInDataWIPackWinApp
             {
                 filePath = file.FileName; //get the path of the file  
                 fileExt = Path.GetExtension(filePath); //get the file extension  
-                //MessageBox.Show(filePath + "/n" + fileExt);
                 if (fileExt.CompareTo(".xls") == 0 || fileExt.CompareTo(".xlsx") == 0)
                 {
                     try
@@ -247,36 +246,12 @@ namespace KeyInDataWIPackWinApp
                     MessageBox.Show(ex.Message);
                 }
                 string Type = "";
-                //test convert data from many row to 1 row
 
-                DataRow first = GLOBAL_DataSource.Rows[0];
-                string Ptype = first["PACK_TYPE"].ToString();
-                string FType = first["FLOW_TYPE"].ToString();
-               
-                if (Ptype == "TRAY" && FType == "A")
-                {
-                    Type = "AssyTray";
-                }
-                if (Ptype == "REEL")
-                {
-                    Type = "RNT";
-                }
                 
 
-
-
                 var dr = dt_result.NewRow();
-                //var dso = dt_resultRNTO.NewRow();
                 var ds = dt_result.NewRow();
-                //var drA = dt_resultAssy.NewRow();
-                //var drRO = dt_resultRNTO.NewRow();
-                //var drRF = dt_resultRNTF.NewRow();
                 var check = false;
-
-                //int LayoutID = 0;
-                //string LayoutName = "WI";
-                //int zeroLayout = 9;
-
                 int loop = 1;
                 string A = "";
                 string B = "";
@@ -321,7 +296,6 @@ namespace KeyInDataWIPackWinApp
                             dr["L2_CAUTION_FLAG"] = "No";
                             dr["L2_HIC_FLAG"] = "No";
                             dr["L2_DESICCANT_FLAG"] = "No";
-
                             dr["L3_CUST_LABEL_FLAG"] = "No";
                             dr["L3_ESD_FLAG"] = "No";
                             dr["L3_BUBBLE_FLAG"] = "No";
@@ -338,16 +312,10 @@ namespace KeyInDataWIPackWinApp
                         if (dataRow["PACK_TYPE"].ToString() == "BOX")
                         {
                             dr["L3_QTY_WF_BOX_PER_BOX"] = dataRow["PACK_QTY"].ToString();
-
                             dr["L3_QTY_UNIT_PER_BOX"] = dataRow["UNIT"].ToString();
-
-                            //dr["L3_QTY_BAG_PER_BOX"] = dataRow["PACK_QTY"].ToString();//Loop9
-                            //LayoutID = LayoutID + 1;
-                            //dr["WI_PACK_ID"] = LayoutName + LayoutID.ToString().PadLeft(zeroLayout, '0');
                             dr["WI_PACK_ID"] = dataRow["PACK_ID"].ToString();
-
                             dt_result.Rows.Add(dr);
-                            //dt_resultAssy.Rows.Add(dr);
+                    
                             loop = 1;
                             check = false;
                         }
@@ -403,15 +371,8 @@ namespace KeyInDataWIPackWinApp
                         if (dataRow["PACK_TYPE"].ToString() == "BOX")
                         {
                             dr["L3_QTY_BAG_PER_BOX"] = dataRow["PACK_QTY"].ToString();//Loop9
-
-                            //dr["L1_QTY_STRAP_TRAY"]=dataRow["PACK_QTY"].ToString();//<------------------this is Value Of Strap Tray TextBox Not Found in Source
-
-                            //LayoutID = LayoutID + 1;
-                            //dr["WI_PACK_ID"] = LayoutName + LayoutID.ToString().PadLeft(zeroLayout, '0');
                             dr["WI_PACK_ID"] = dataRow["PACK_ID"].ToString();
-
                             dt_result.Rows.Add(dr);
-                            //dt_resultAssy.Rows.Add(dr);
                             loop = 1;
                             check = false;
                         }
@@ -433,11 +394,8 @@ namespace KeyInDataWIPackWinApp
                         {
                             dr = dt_result.NewRow();
                             ds = dt_result.NewRow();
-                            //Operation=dr Final=ds
                             dr["WI_TYPE"] = "Generic";
-                            //dr["DESCRIPTION"] = dataRow["PACK_ID"].ToString() + " Operation";
                             dr["DESCRIPTION"] = dataRow["PACK_DESCRIPTION"].ToString();
-
                             dr["INSTRUC_OPTN"] = dataRow["METHOD"].ToString();
                             dr["HTB"] = dataRow["HTB"].ToString();
                             dr["UNIT_PER_REEL"] = dataRow["UNIT"].ToString();
@@ -482,18 +440,11 @@ namespace KeyInDataWIPackWinApp
                             ds["UNIQUE_ID"] = "0";
                             ds["STATUS"] = "1";
 
-
-
-
-                            //dt_result.Rows.Add(dr);
-                            //dt_result.Rows.Add(ds);
                         }
                         if (dataRow["PACK_TYPE"].ToString() == "BAG")
                         {
-
                             //    ds["L2_UNIT_PER_BAG"] = dataRow["UNIT"].ToString();
                             //ds["L2_QTY_REEL_PER_BAG"] = dataRow["PACK_QTY"].ToString();
-
                         }
                         if (dataRow["PACK_TYPE"].ToString() == "BOX")
                         {
@@ -528,12 +479,7 @@ namespace KeyInDataWIPackWinApp
                                 case "QUAD_4": dr["PIN1_ORIENTATION"] = "Quadrant 4"; break;
 
                             }
-                            //LayoutID = LayoutID + 1;
-                            //dr["WI_PACK_ID"] = LayoutName + LayoutID.ToString().PadLeft(zeroLayout, '0');
                             dr["WI_PACK_ID"] = dataRow["PACK_ID"].ToString()+"_OPTN";
-                            
-                            //LayoutID = LayoutID + 1;
-                            //ds["WI_PACK_ID"] = LayoutName + LayoutID.ToString().PadLeft(zeroLayout, '0');
                             ds["WI_PACK_ID"] = dataRow["PACK_ID"].ToString();
 
                             dt_result.Rows.Add(ds);
@@ -571,8 +517,6 @@ namespace KeyInDataWIPackWinApp
                             var worksheet = workbook.Worksheets.Add(dt_result, "Pack Out");
 
                             var fullpath = @fbd.SelectedPath + "\\" + filename + ".xlsx";
-
-                            //MessageBox.Show(fullpath);
                             workbook.SaveAs(fullpath);
                             MessageBox.Show("SAVE to " + fbd.SelectedPath);
 

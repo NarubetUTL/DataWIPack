@@ -13,156 +13,7 @@ namespace KeyIndataWIPackManyOutputVer
 {
     class Program
     {
-        private void Runtop()
-        {
-            DataTable dt_result = new DataTable();
-            try
-            {
-                dt_result.Columns.Add("WI_PACK_ID");
-                dt_result.Columns.Add("WI_TYPE");
-                dt_result.Columns.Add("ENGINEERING_CODE");
-                dt_result.Columns.Add("PRODUCT_APPLICATION");
-                dt_result.Columns.Add("DESCRIPTION");
-                dt_result.Columns.Add("INSTRUC_OPTN");
-                dt_result.Columns.Add("HTB");
-                dt_result.Columns.Add("SPECIAL_MAT1");
-                dt_result.Columns.Add("SPECIAL_MAT2");
-                dt_result.Columns.Add("SPECIAL_MAT3");
-                dt_result.Columns.Add("SPECIAL_MAT4");
-                dt_result.Columns.Add("SPECIAL_MAT5");
-                dt_result.Columns.Add("SPECIAL_MAT1_QTY");
-                dt_result.Columns.Add("SPECIAL_MAT2_QTY");
-                dt_result.Columns.Add("SPECIAL_MAT3_QTY");
-                dt_result.Columns.Add("SPECIAL_MAT4_QTY");
-                dt_result.Columns.Add("SPECIAL_MAT5_QTY");
-                dt_result.Columns.Add("BAKE_TEMP");
-                dt_result.Columns.Add("BAKE_DURATION");
-                dt_result.Columns.Add("BAKE_TOOLING");
-                dt_result.Columns.Add("PIN1_ORIENTATION");
-                dt_result.Columns.Add("PIN1_ORIENTATION_IMG_PATH");
-                dt_result.Columns.Add("UNIT_PER_REEL");
-                dt_result.Columns.Add("UNIT_PLACEMENT");
-                dt_result.Columns.Add("LEADER_POCKET_MAX");
-                dt_result.Columns.Add("LEADER_POCKET_MIN");
-                dt_result.Columns.Add("TRAILER_POCKET_MAX");
-                dt_result.Columns.Add("TRAILER_POCKET_MIN");
-                dt_result.Columns.Add("ATTACH_LABEL_FLAG");
-                dt_result.Columns.Add("LABEL_POSITION");
-                dt_result.Columns.Add("TRAILER_TAPE_FLAG");
-                dt_result.Columns.Add("UNIT_PER_TUBE");
-                dt_result.Columns.Add("P1_FULL_TUBE");
-                dt_result.Columns.Add("P1_FULL_TUBE_FOAM");
-                dt_result.Columns.Add("OP_P1_FULL_TUBE");
-                dt_result.Columns.Add("OP_P1_FULL_TUBE_FOAM");
-                dt_result.Columns.Add("P1_COMBINE_TUBE");
-                dt_result.Columns.Add("P1_COMBINE_TUBE_FOAM");
-                dt_result.Columns.Add("OP_P1_COMBINE_TUBE");
-                dt_result.Columns.Add("OP_P1_COMBINE_TUBE_FOAM");
-                dt_result.Columns.Add("P1_PARTIAL_TUBE");
-                dt_result.Columns.Add("P1_PARTIAL_TUBE_FOAM");
-                dt_result.Columns.Add("OP_P1_PARTIAL_TUBE");
-                dt_result.Columns.Add("OP_P1_PARTIAL_TUBE_FOAM");
-                dt_result.Columns.Add("PIN1_POSITION");
-                dt_result.Columns.Add("PIN1_POSITION_IMG_PATH");
-                dt_result.Columns.Add("UNIT_PER_TRAY");
-                dt_result.Columns.Add("QTY_COVER_TOP_SIDE");
-                dt_result.Columns.Add("QTY_COVER_BOTTOM_SIDE");
-                dt_result.Columns.Add("QTY_STACK_TRAY");
-                dt_result.Columns.Add("PIN1_ON_TRAY");
-                dt_result.Columns.Add("PIN1_ON_TRAY_IMG_PATH");
-                dt_result.Columns.Add("PARTIAL_TRAY_DIRECTION");
-                dt_result.Columns.Add("PARTIAL_TRAY_IMG_PATH");
-                dt_result.Columns.Add("UNIT_PER_CAN");
-                dt_result.Columns.Add("CUSHION_POSITION");
-                dt_result.Columns.Add("SHIELDING_BAG");
-                dt_result.Columns.Add("UNIT_PER_BAG");
-                dt_result.Columns.Add("UNIT_PER_WAFER_BOX");
-                dt_result.Columns.Add("PACKOUT_TYPE");
-                dt_result.Columns.Add("L1_UNIT_PER_REEL");
-                dt_result.Columns.Add("L1_UNIT_PER_TUBE");
-                dt_result.Columns.Add("L1_UNIT_PER_TRAY");
-                dt_result.Columns.Add("L1_UNIT_PER_CAN");
-                dt_result.Columns.Add("L1_UNIT_PER_WF_BOX");
-                dt_result.Columns.Add("L1_UNIT_PER_BAG");
-                dt_result.Columns.Add("L1_CUST_LABEL_FLAG");
-                dt_result.Columns.Add("L1_CUST_LABEL_QTY");
-                dt_result.Columns.Add("L1_ESD_FLAG");
-                dt_result.Columns.Add("L1_ESD_QTY");
-                dt_result.Columns.Add("L1_PROTECTIVE_FLAG");
-                dt_result.Columns.Add("L1_PROTECTIVE_QTY");
-                dt_result.Columns.Add("L1_PINK_FOAM_FLAG");
-                dt_result.Columns.Add("L1_WRAP_RUBBER_FLAG");
-                dt_result.Columns.Add("L1_WRAP_BUBBLE_FLAG");
-                dt_result.Columns.Add("L1_QTY_PER_WRAP_RUBBER");
-                dt_result.Columns.Add("L1_QTY_TACK_TRAY_FLAG");
-                dt_result.Columns.Add("L1_QTY_COVER_TRAY");
-                dt_result.Columns.Add("L1_QTY_STRAP_TRAY");
-                dt_result.Columns.Add("L2_UNIT_PER_BAG");
-                dt_result.Columns.Add("L2_UNIT_PER_CAN");
-                dt_result.Columns.Add("L2_QTY_TUBE_PER_BAG");
-                dt_result.Columns.Add("L2_QTY_WF_BOX_PER_BAG");
-                dt_result.Columns.Add("L2_QTY_REEL_PER_BAG");
-                dt_result.Columns.Add("L2_QTY_BAG_PER_BAG");
-                dt_result.Columns.Add("L2_DRY_PACK_FLAG");
-                dt_result.Columns.Add("L2_CACUUM_SEAL_FLAG");
-                dt_result.Columns.Add("L2_SEAL_LINE");
-                dt_result.Columns.Add("L2_MET");
-                dt_result.Columns.Add("L2_CUST_LABEL_FLAG");
-                dt_result.Columns.Add("L2_CUST_LABEL_QTY");
-                dt_result.Columns.Add("L2_ESD_FLAG");
-                dt_result.Columns.Add("L2_ESD_QTY");
-                dt_result.Columns.Add("L2_CAUTION_FLAG");
-                dt_result.Columns.Add("L2_CAUTION_QTY");
-                dt_result.Columns.Add("L2_HIC_FLAG");
-                dt_result.Columns.Add("L2_HIC_QTY");
-                dt_result.Columns.Add("L2_DESICCANT_FLAG");
-                dt_result.Columns.Add("L2_DESICCANT_QTY");
-                dt_result.Columns.Add("L3_QTY_UNIT_PER_BOX");
-                dt_result.Columns.Add("L3_QTY_TUBE_PER_BOX");
-                dt_result.Columns.Add("L3_QTY_BAG_PER_BOX");
-                dt_result.Columns.Add("L3_QTY_REEL_PER_BOX");
-                dt_result.Columns.Add("L3_QTY_WF_BOX_PER_BOX");
-                dt_result.Columns.Add("L3_CUST_LABEL_FLAG");
-                dt_result.Columns.Add("L3_CUST_LABEL_QTY");
-                dt_result.Columns.Add("L3_ESD_FLAG");
-                dt_result.Columns.Add("L3_ESD_QTY");
-                dt_result.Columns.Add("L3_BUBBLE_FLAG");
-                dt_result.Columns.Add("L3_BUBBLE_QTY");
-                dt_result.Columns.Add("L3_CAUTION_FLAG");
-                dt_result.Columns.Add("L3_CAUTION_QTY");
-                dt_result.Columns.Add("L3_QTY_TAPE_LINE");
-                dt_result.Columns.Add("UNIQUE_ID");
-                dt_result.Columns.Add("STATUS");
-                dt_result.Columns.Add("CREATED_BY");
-                dt_result.Columns.Add("CREATED_BY_NAME");
-                dt_result.Columns.Add("CREATED_DATE");
-                dt_result.Columns.Add("UPDATED_BY");
-                dt_result.Columns.Add("UPDATED_BY_NAME");
-                dt_result.Columns.Add("UPDATED_DATE");
-                dt_result.Columns.Add("SPECIAL_MAT6");
-                dt_result.Columns.Add("SPECIAL_MAT7");
-                dt_result.Columns.Add("SPECIAL_MAT8");
-                dt_result.Columns.Add("SPECIAL_MAT9");
-                dt_result.Columns.Add("SPECIAL_MAT10");
-                dt_result.Columns.Add("SPECIAL_MAT6_QTY");
-                dt_result.Columns.Add("SPECIAL_MAT7_QTY");
-                dt_result.Columns.Add("SPECIAL_MAT8_QTY");
-                dt_result.Columns.Add("SPECIAL_MAT9_QTY");
-                dt_result.Columns.Add("SPECIAL_MAT10_QTY");
-                dt_result.Columns.Add("L1_UNIT_QTY");
-                dt_result.Columns.Add("L2_UNIT_QTY");
-                dt_result.Columns.Add("L2_PACK_QTY");
-                dt_result.Columns.Add("L3_UNIT_QTY");
-                dt_result.Columns.Add("L3_PACK_QTY");
-
-            }
-            catch (Exception ex)
-            {
-
-                Console.WriteLine(ex);
-                Console.ReadLine();
-            }
-        }
+        
 
         static void Main(string[] args)
         {
@@ -206,11 +57,7 @@ namespace KeyIndataWIPackManyOutputVer
                         try
                         {
 
-                            /* var dt_result = GetDatatable();*///get new Head Columns
-
-                            //DataTable dt_resultAssy = new DataTable();
-                            //DataTable dt_resultRNTO = new DataTable();
-                            //DataTable dt_resultRNTF = new DataTable();
+                            
                             DataTable dt_result = new DataTable();
                             try
                             {
@@ -351,9 +198,7 @@ namespace KeyIndataWIPackManyOutputVer
                                 dt_result.Columns.Add("L3_UNIT_QTY");
                                 dt_result.Columns.Add("L3_PACK_QTY");
 
-                                //dt_resultAssy = dt_result;
-                                //dt_resultRNTF = dt_result;
-                                //dt_resultRNTO = dt_result;
+                            
                             }
                             catch (Exception ex)
                             {
@@ -366,7 +211,6 @@ namespace KeyIndataWIPackManyOutputVer
 
 
                             string Type = "";
-                            //test convert data from many row to 1 row
 
                             Console.WriteLine("Check Type");
                             DataRow first = dtMain.Rows[0];
@@ -389,11 +233,8 @@ namespace KeyIndataWIPackManyOutputVer
 
                         
                             var dr = dt_result.NewRow();
-                            //var dso = dt_resultRNTO.NewRow();
                             var ds = dt_result.NewRow();
-                            //var drA = dt_resultAssy.NewRow();
-                            //var drRO = dt_resultRNTO.NewRow();
-                            //var drRF = dt_resultRNTF.NewRow();
+                       
                             var check = false;
 
                             int LayoutID = 0;
@@ -469,7 +310,7 @@ namespace KeyIndataWIPackManyOutputVer
                                         LayoutID = LayoutID + 1;
                                         dr["WI_PACK_ID"] = LayoutName + LayoutID.ToString().PadLeft(zeroLayout, '0');
                                         dt_result.Rows.Add(dr);
-                                        //dt_resultAssy.Rows.Add(dr);
+
                                         loop = 1;
                                         check = false;
                                     }
@@ -491,9 +332,9 @@ namespace KeyIndataWIPackManyOutputVer
                                     {
                                         dr = dt_result.NewRow();
                                         ds = dt_result.NewRow();
-                                        //Operation=dr Final=ds
+
                                         dr["WI_TYPE"] = "Generic";
-                                        //dr["DESCRIPTION"] = dataRow["PACK_ID"].ToString() + " Operation";
+
                                         dr["DESCRIPTION"] = dataRow["PACK_DESCRIPTION"].ToString();
 
                                         dr["INSTRUC_OPTN"] = dataRow["METHOD"].ToString();
@@ -541,14 +382,12 @@ namespace KeyIndataWIPackManyOutputVer
 
 
 
-                                        //dt_result.Rows.Add(dr);
-                                        //dt_result.Rows.Add(ds);
+                                 
                                     }
                                     if (dataRow["PACK_TYPE"].ToString() == "BAG")
                                     {
                                         
-                                        //    ds["L2_UNIT_PER_BAG"] = dataRow["UNIT"].ToString();
-                                        //ds["L2_QTY_REEL_PER_BAG"] = dataRow["PACK_QTY"].ToString();
+                                      
 
                                     }
                                     if (dataRow["PACK_TYPE"].ToString() == "BOX")
@@ -591,16 +430,7 @@ namespace KeyIndataWIPackManyOutputVer
                                     }
                                 }
                             }
-                            //if (lastSTAT == "AssyTray")
-                            //{
-                            //    dt_result.Rows.Add(dr);
-
-                            //}
-                            //else
-                            //{
-                            //    dt_result.Rows.Add(dr);
-                            //    dt_result.Rows.Add(ds);
-                            //}
+                           
 
                             Console.WriteLine("Finish?");
                             Console.ReadLine();
@@ -623,7 +453,6 @@ namespace KeyIndataWIPackManyOutputVer
 
                                     var fullpath = filespathOutput + "\\" + filename + ".xlsx";
 
-                                    //MessageBox.Show(fullpath);
                                     workbook.SaveAs(fullpath);
 
 
