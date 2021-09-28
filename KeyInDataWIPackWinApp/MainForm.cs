@@ -263,10 +263,10 @@ namespace KeyInDataWIPackWinApp
                 foreach (DataRow dataRow in GLOBAL_DataSource.Rows)
                 {
                     checksideType = false;
-                    if (dataRow["PACK_ID"].ToString()== "SC9001")
-                    {
-                        var ass = "1";
-                    }
+                    //if (dataRow["PACK_ID"].ToString() == "PII019/S")
+                    //{
+                    //    var ass = "1";
+                    //}
                     if (A != dataRow["PACK_ID"].ToString() &&loop!=1)
                     {
                         if(sideTye != "TUBE")
@@ -368,7 +368,13 @@ namespace KeyInDataWIPackWinApp
                             dr["DESCRIPTION"] = dataRow["PACK_DESCRIPTION"].ToString();
 
                             dr["INSTRUC_OPTN"] = "Canister";
-                            dr["HTB"] = dataRow["HTB"].ToString();
+                            if (dataRow["HTB"].ToString() == "IMMED"){
+                                dr["HTB"] = "P";
+                            }
+                            else
+                            {
+                                dr["HTB"] = dataRow["HTB"].ToString();
+                            }
                             dr["UNIT_PER_CAN"] = dataRow["UNIT"].ToString();
 
                             dr["CREATED_BY"] = "System";
@@ -502,14 +508,21 @@ namespace KeyInDataWIPackWinApp
 
                                 dr = dt_result.NewRow();//OPR
                                 ds = dt_result.NewRow();//PackOUT
+
                                 dr["WI_PACK_ID"] = dataRow["PACK_ID"].ToString() + "_OPTN";
                                 ds["WI_PACK_ID"] = dataRow["PACK_ID"].ToString();
                                 dr["WI_TYPE"] = "Generic";
                                 dr["DESCRIPTION"] = dataRow["PACK_DESCRIPTION"].ToString();
                                 dr["INSTRUC_OPTN"] = "Tube";
 
-                                dr["HTB"] = "P";
-                                dr["HTB"] = dataRow["HTB"].ToString();
+                                if (dataRow["HTB"].ToString() == "IMMED")
+                                {
+                                    dr["HTB"] = "P";
+                                }
+                                else
+                                {
+                                    dr["HTB"] = dataRow["HTB"].ToString();
+                                }
 
                                 dr["UNIT_PER_TUBE"] = dataRow["UNIT"].ToString();
                                 dr["P1_FULL_TUBE_FOAM"] = "No";
@@ -609,6 +622,7 @@ namespace KeyInDataWIPackWinApp
                             dr["L1_UNIT_PER_WF_BOX"] = dataRow["UNIT"].ToString();
 
                             dr["L1_CUST_LABEL_FLAG"] = "No";
+
                             dr["L2_DRY_PACK_FLAG"] = "No";
                             dr["L2_CACUUM_SEAL_FLAG"] = "No";
                             dr["L2_CUST_LABEL_FLAG"] = "No";
@@ -616,6 +630,7 @@ namespace KeyInDataWIPackWinApp
                             dr["L2_CAUTION_FLAG"] = "No";
                             dr["L2_HIC_FLAG"] = "No";
                             dr["L2_DESICCANT_FLAG"] = "No";
+
                             dr["L3_CUST_LABEL_FLAG"] = "No";
                             dr["L3_ESD_FLAG"] = "No";
                             dr["L3_BUBBLE_FLAG"] = "No";
@@ -626,7 +641,20 @@ namespace KeyInDataWIPackWinApp
                             ds["DESCRIPTION"] = dataRow["PACK_DESCRIPTION"].ToString();
                             ds["INSTRUC_OPTN"] = "Wafer";
                             ds["UNIT_PER_WAFER_BOX"] = dataRow["UNIT"].ToString();
-                            ds["HTB"] = dataRow["HTB"].ToString();
+                            if (dataRow["HTB"].ToString() == "IMMED"){
+                                ds["HTB"] = "P";
+                            }
+                            else
+                            {
+                                if (dataRow["HTB"].ToString() == "IMMED")
+                                {
+                                    ds["HTB"] = "P";
+                                }
+                                else
+                                {
+                                    ds["HTB"] = dataRow["HTB"].ToString();
+                                }
+                            }
 
 
 
@@ -649,26 +677,41 @@ namespace KeyInDataWIPackWinApp
                             ds["UNIQUE_ID"] = "0";
                             ds["STATUS"] = "1";
                         }
+                        //if (dataRow["PACK_TYPE"].ToString() == "DESICCANT")
+                        //{
+                        //    dr["L2_DESICCANT_FLAG"] = "Yes";
+                        //    dr["L2_DESICCANT_FLAG"] = "0";
+
+                        //}
+                        //if (dataRow["PACK_TYPE"].ToString() == "BUBBLE SHEET")
+                        //{
+                        //    dr["L3_BUBBLE_FLAG"] = "Yes";
+                        //    dr["L3_BUBBLE_QTY"] = "0";
+                        //}
+
                         if (dataRow["PACK_TYPE"].ToString() == "BAG")
                         {
-                            dr["L2_QTY_WF_BOX_PER_BAG"] = dataRow["PACK_QTY"].ToString();
-                            //dr["L2_QTY_UNIT_PER_BOX"] = dataRow["UNIT"].ToString(); IN K2 To WI DB Not Found!!!
-
+                            //string L2QTYUnitPerBag = dataRow["UNIT"].ToString();
+                            dr["L2_QTY_WF_BOX_PER_BAG"] = Convert.ToString(Convert.ToInt32(dataRow["UNIT"].ToString()) / Convert.ToInt32(dr["L1_UNIT_PER_WF_BOX"]));
+                            //dr["L2_QTY_WF_BOX_PER_BAG"] = dataRow["PACK_QTY"].ToString();
                         }
                         if (dataRow["PACK_TYPE"].ToString() == "BOX")
                         {
                             dr["L3_QTY_UNIT_PER_BOX"] = dataRow["UNIT"].ToString();
-                            //dr["L3_QTY_BAG_PER_BOX"] = dataRow["PACK_QTY"].ToString();
-                            dr["L3_QTY_WF_BOX_PER_BOX"] = dataRow["PACK_QTY"].ToString();
+                            
+                            dr["L3_QTY_WF_BOX_PER_BOX"] = Convert.ToString(Convert.ToInt32(dr["L3_QTY_UNIT_PER_BOX"]) / Convert.ToInt32(dr["L1_UNIT_PER_WF_BOX"]));
 
 
+                            if (dr["L2_QTY_WF_BOX_PER_BAG"].ToString() != "")
+                            {
 
-
+                                dr["L3_QTY_BAG_PER_BOX"] = Convert.ToString(Convert.ToInt32(dr["L3_QTY_WF_BOX_PER_BOX"]) / Convert.ToInt32(dr["L2_QTY_WF_BOX_PER_BAG"]));
+                            }
                             //dr["WI_PACK_ID"] = "ERROR" + " Method=" + dataRow["METHOD"].ToString() + " TypeT =" + dataRow["PACK_TYPE"].ToString(); For Except Wafer
 
 
 
-                            
+
 
                             dt_result.Rows.Add(dr);
                             dt_result.Rows.Add(ds);
@@ -786,7 +829,14 @@ namespace KeyInDataWIPackWinApp
                             dr["WI_TYPE"] = "Generic";
                             dr["DESCRIPTION"] = dataRow["PACK_DESCRIPTION"].ToString();
                             dr["INSTRUC_OPTN"] = dataRow["METHOD"].ToString();
-                            dr["HTB"] = dataRow["HTB"].ToString();
+                            if (dataRow["HTB"].ToString() == "IMMED")
+                            {
+                                dr["HTB"] = "P";
+                            }
+                            else
+                            {
+                                dr["HTB"] = dataRow["HTB"].ToString();
+                            }
                             dr["UNIT_PER_REEL"] = dataRow["UNIT"].ToString();
                             dr["UNIT_PLACEMENT"] = "Live bug";
                             dr["LABEL_POSITION"] = "Sprocket hole";
@@ -831,17 +881,23 @@ namespace KeyInDataWIPackWinApp
                         }
                         if (dataRow["PACK_TYPE"].ToString() == "BAG")
                         {
-                            //    ds["L2_UNIT_PER_BAG"] = dataRow["UNIT"].ToString();
-                            //ds["L2_QTY_REEL_PER_BAG"] = dataRow["PACK_QTY"].ToString();
+                            ds["L2_UNIT_PER_BAG"] = dataRow["UNIT"].ToString();
+                            ds["L2_QTY_REEL_PER_BAG"] = dataRow["PACK_QTY"].ToString();
                         }
                         if (dataRow["PACK_TYPE"].ToString() == "BOX")
                         {
                             ds["L3_QTY_UNIT_PER_BOX"] = dataRow["UNIT"].ToString();
                             ds["L3_QTY_REEL_PER_BOX"] = dataRow["PACK_QTY"].ToString();
-                            ds["L2_UNIT_PER_BAG"] = dataRow["UNIT"].ToString();
-                            ds["L2_QTY_REEL_PER_BAG"] = dataRow["PACK_QTY"].ToString();
+                            //ds["L2_UNIT_PER_BAG"] = dataRow["UNIT"].ToString();
+                            //ds["L2_QTY_REEL_PER_BAG"] = dataRow["PACK_QTY"].ToString();
                         }
-                        if(dataRow["PACK_TYPE"].ToString() == "TAPE" && dataRow["SEQ_NO"].ToString() != "4")
+                        if(dataRow["PACK_TYPE"].ToString() == "LABEL" && dataRow["PACK_QTY"].ToString()!="")
+                        {
+                            ds["L3_CUST_LABEL_FLAG"] = "Yes";
+                            ds["L3_CUST_LABEL_QTY"] = dataRow["PACK_QTY"].ToString();
+
+                        }
+                        if (dataRow["PACK_TYPE"].ToString() == "TAPE" && dataRow["SEQ_NO"].ToString() != "4")
                         {
                             ds["L3_QTY_TAPE_LINE"] = dataRow["PACK_QTY"].ToString();
 
