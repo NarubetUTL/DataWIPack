@@ -22,7 +22,7 @@ namespace KeyInDataWIPackWinApp
         public string mytime = "";
         private DataTable GLOBAL_DataSource = new DataTable();
         private DataTable dt_result = new DataTable();
-        
+        #region get Input
         private void btnBrowse_Click(object sender, EventArgs e)
         {
             string filePath = string.Empty;
@@ -52,7 +52,9 @@ namespace KeyInDataWIPackWinApp
             }
 
         }
+        #endregion
 
+        #region Read
         private void btnRead_Click(object sender, EventArgs e)
         {
             try
@@ -92,7 +94,7 @@ namespace KeyInDataWIPackWinApp
                 MessageBox.Show(ex.Message);
             }
         }
-
+        #endregion
         private void bynStart_Click(object sender, EventArgs e)
         {
             dt_result = new DataTable();
@@ -100,7 +102,7 @@ namespace KeyInDataWIPackWinApp
             {
 
 
-                
+                #region setcolumn
                 try
                 {
                     dt_result.Columns.Add("WI_PACK_ID");
@@ -248,8 +250,8 @@ namespace KeyInDataWIPackWinApp
                 }
                 string Type = "";
 
-                
-
+                #endregion
+                #region Convert
                 var dr = dt_result.NewRow();
                 var ds = dt_result.NewRow();
                 var check = false;
@@ -263,10 +265,7 @@ namespace KeyInDataWIPackWinApp
                 foreach (DataRow dataRow in GLOBAL_DataSource.Rows)
                 {
                     checksideType = false;
-                    //if (dataRow["PACK_ID"].ToString() == "PII019/S")
-                    //{
-                    //    var ass = "1";
-                    //}
+                    #region Last Value 1
                     if (A != dataRow["PACK_ID"].ToString() &&loop!=1)
                     {
                         if(sideTye != "TUBE")
@@ -324,7 +323,9 @@ namespace KeyInDataWIPackWinApp
                             sideTye = "";
                         }
                     }
-                        if (loop == 1) //use type for case
+                    #endregion
+                    #region checktype
+                    if (loop == 1) //use type for case
                     {
                         
 
@@ -344,7 +345,8 @@ namespace KeyInDataWIPackWinApp
                             default: checkdtAdd = false;  if (check == false) { Type = "Another"; } break;
                         }
                     }
-
+                    #endregion
+                    #region CAN
                     if (Type == "CAN")
                     {
                         if (A == dataRow["PACK_ID"].ToString())
@@ -426,7 +428,8 @@ namespace KeyInDataWIPackWinApp
                             checkdtAdd = true;
                         }
                     }
-
+                    #endregion
+                    #region RAI
                     if (Type == "RAI")
                     {
                         if(dataRow["PACK_TYPE"].ToString() == "FILM FRAME" || sideTye== "FILM FRAME")
@@ -597,7 +600,8 @@ namespace KeyInDataWIPackWinApp
                             }
                         }
                     }
-
+                    #endregion
+                    #region WAF
                     if (Type == "WAF")
                     {
                         if (A == dataRow["PACK_ID"].ToString())
@@ -677,18 +681,7 @@ namespace KeyInDataWIPackWinApp
                             ds["UNIQUE_ID"] = "0";
                             ds["STATUS"] = "1";
                         }
-                        //if (dataRow["PACK_TYPE"].ToString() == "DESICCANT")
-                        //{
-                        //    dr["L2_DESICCANT_FLAG"] = "Yes";
-                        //    dr["L2_DESICCANT_FLAG"] = "0";
-
-                        //}
-                        //if (dataRow["PACK_TYPE"].ToString() == "BUBBLE SHEET")
-                        //{
-                        //    dr["L3_BUBBLE_FLAG"] = "Yes";
-                        //    dr["L3_BUBBLE_QTY"] = "0";
-                        //}
-
+                       
                         if (dataRow["PACK_TYPE"].ToString() == "BAG")
                         {
                             //string L2QTYUnitPerBag = dataRow["UNIT"].ToString();
@@ -725,7 +718,9 @@ namespace KeyInDataWIPackWinApp
                             checkdtAdd = true;
                         }
                 }
-                if (Type == "TRA")
+                    #endregion
+                    #region TRA
+                    if (Type == "TRA")
                     {
                         if (A == dataRow["PACK_ID"].ToString())
                         {
@@ -807,6 +802,8 @@ namespace KeyInDataWIPackWinApp
                             loop = 1;
                         }
                     }
+                    #endregion
+                    #region TNR
                     if (Type == "TNR")
                     {
                         if (A == dataRow["PACK_ID"].ToString())
@@ -932,7 +929,56 @@ namespace KeyInDataWIPackWinApp
                             checkdtAdd = true;
                         }
                     }
+                    #endregion
                 }
+                #region Last Value 2
+                //last
+                if (checkdtAdd == false && checkpassOnce == true && Type != "Another" && loop != 1)
+                {
+
+                    switch (Type)
+                    {
+                        case "CAN":
+
+                            dt_result.Rows.Add(ds);
+                            dt_result.Rows.Add(dr); break;
+                        case "TNR":
+
+                            dt_result.Rows.Add(ds);
+                            dt_result.Rows.Add(dr);
+                            ; break;
+                        case "TRA":
+
+                            dt_result.Rows.Add(dr); break;
+                        case "WAF":
+
+
+                            dt_result.Rows.Add(dr);
+                            dt_result.Rows.Add(ds); break;
+                        case "RAI":
+                            if (sideTye == "FILM FRAME")
+                            {
+                                dt_result.Rows.Add(dr);
+                            }
+                            if (sideTye == "TUBE")
+                            {
+
+                                dt_result.Rows.Add(ds);
+                                dt_result.Rows.Add(dr);
+                            }
+                            break;
+
+
+                    }
+                    loop = 1;
+                    check = false;
+                    checkdtAdd = true;
+                    sideTye = "";
+                }
+                #endregion
+                //forthe last error
+                #endregion
+
                 dataGridViewOutput.DataSource = dt_result;
             }
             catch (Exception ex)
@@ -941,7 +987,10 @@ namespace KeyInDataWIPackWinApp
                 MessageBox.Show(ex.Message);
             }
         }
-            private void btnExport_Click(object sender, EventArgs e)
+
+        #region Export
+
+        private void btnExport_Click(object sender, EventArgs e)
         {
             string filename = tbFile.Text;
             using (var fbd = new FolderBrowserDialog())
@@ -978,6 +1027,7 @@ namespace KeyInDataWIPackWinApp
             }
 
         }
+        #endregion
 
         private void MainForm_Load(object sender, EventArgs e)
         {
