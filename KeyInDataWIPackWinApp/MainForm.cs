@@ -22,6 +22,7 @@ namespace KeyInDataWIPackWinApp
         public string mytime = "";
         private DataTable GLOBAL_DataSource = new DataTable();
         private DataTable dt_result = new DataTable();
+        public string ERRORget = ""; 
         #region get Input
         private void btnBrowse_Click(object sender, EventArgs e)
         {
@@ -98,9 +99,8 @@ namespace KeyInDataWIPackWinApp
         private void bynStart_Click(object sender, EventArgs e)
         {
             dt_result = new DataTable();
-            try
-            {
-
+            //try
+            //{
 
                 #region setcolumn
                 try
@@ -262,25 +262,71 @@ namespace KeyInDataWIPackWinApp
                 var checkdtAdd = true;
                 var checkpassOnce = false;
                 var checksideType = false;
-                foreach (DataRow dataRow in GLOBAL_DataSource.Rows)
+            int LevelCOunt = 0;
+                string ItemSet = "";
+                int errorCount = 0;
+                string getErrorPoint = "";
+            string PassID = "";
+            string PassSEQ = "";
+            string PassDateCre = "";
+            int countrow = 0;
+            int countItem = 0;
+            int CountRAI = 0;
+            int CountWAF = 0;
+            int CountTNR = 0;
+            int CountTRA = 0;
+            int CountCAN = 0;
+
+            //var falsecal = false;
+            foreach (DataRow dataRow in GLOBAL_DataSource.Rows)
                 {
+                countrow = countrow + 1;
+                if (dataRow["SEQ_NO"].ToString() == "1" )
+                {
+                    countItem = countItem + 1;
+                }
+                if (dataRow["PACK_ID"].ToString() == "ATIU008" && dataRow["PACK_REV"].ToString() == "A")
+                {
+                    string aaaad = "";
+                }
                     checksideType = false;
                     #region Last Value 1
-                    if (A != dataRow["PACK_ID"].ToString() &&loop!=1)
+                    if ((A != dataRow["PACK_ID"].ToString() || ItemSet !=dataRow["PACK_REV"].ToString() ) )
                     {
-                        if(sideTye != "TUBE")
+                        if(sideTye != "TUBE" && loop != 1)
                         {
                             checksideType = true;
                         }
+                        if(sideTye != "TUBE" && PassSEQ=="1" && dataRow["SEQ_NO"].ToString() == "1")
+                    {
+                        checksideType = true; 
+                        checkpassOnce = true;
+
+                    }
+                }
+
+                    if(sideTye == "TUBE" &&( B != dataRow["PACK_ID"].ToString() || ItemSet != dataRow["PACK_REV"].ToString() ))
+                    {
+                    if (sideTye == "TUBE" && loop != 1 && B == dataRow["PACK_ID"].ToString()&& ItemSet != dataRow["PACK_REV"].ToString())
+                    {
+                        checksideType = true;
                     }
                     if(sideTye == "TUBE" && B != dataRow["PACK_ID"].ToString() && loop != 1)
                     {
                         checksideType = true;
 
                     }
+                    if (sideTye == "TUBE" && PassSEQ == "1" && dataRow["SEQ_NO"].ToString() == "1")
+                    {
+                        checksideType = true;
+                        checkpassOnce = true;
+
+                    }
+                }
+
                     if (checksideType)
                     {
-                        if (checkdtAdd == false && checkpassOnce == true && Type != "Another"&&loop!=1)
+                        if (checkdtAdd == false && checkpassOnce == true && Type != "Another")
                         {
                             
                             switch (Type)
@@ -288,37 +334,41 @@ namespace KeyInDataWIPackWinApp
                                 case "CAN":
                                     
                                     dt_result.Rows.Add(ds);
-                                    dt_result.Rows.Add(dr); break;
+                                    dt_result.Rows.Add(dr);
+                                CountCAN =CountCAN+ 1;
+                                break;
                                 case "TNR":
                                     
                                     dt_result.Rows.Add(ds);
-                                    dt_result.Rows.Add(dr);
+                                    dt_result.Rows.Add(dr);CountTNR = CountTNR + 1
                                     ; break;
                                 case "TRA":
                                    
                                     dt_result.Rows.Add(dr); 
-                                    dt_result.Rows.Add(ds); break;
+                                    dt_result.Rows.Add(ds);CountTRA = CountTRA + 1; break;
 
                                 case "WAF":
                                     
                                     
                                     dt_result.Rows.Add(dr);
-                                    dt_result.Rows.Add(ds); break;
+                                    dt_result.Rows.Add(ds);CountWAF = CountWAF + 1; break;
                                 case "RAI":
                                     if (sideTye == "FILM FRAME" )
                                     {
                                         dt_result.Rows.Add(dr);
 
                                         dt_result.Rows.Add(ds);
-
-                                    }
+                                    CountWAF = CountWAF + 1;
+                                }
                                     if (sideTye == "TUBE" )
                                     {
                                         
                                         dt_result.Rows.Add(ds);
                                         dt_result.Rows.Add(dr);
-                                    }
-                                    break;
+                                    CountRAI = CountRAI + 1;
+                                }
+                               
+                                break;
 
 
                             }
@@ -326,38 +376,88 @@ namespace KeyInDataWIPackWinApp
                             check = false;
                             checkdtAdd = true;
                             sideTye = "";
-                        }
+                        Type = "Another";
+
                     }
-                    #endregion
-                    
-                    #region checktype
-                    if (loop == 1) //use type for case
+                }
+                #endregion
+
+
+
+
+
+                #region checktype
+                if (loop == 1 && dataRow["SEQ_NO"].ToString() == "1") //use type for case
+                {
+                    if (PassID == dataRow["PACK_ID"].ToString() && ItemSet == dataRow["PACK_REV"].ToString() && dataRow["CREATE_DATE"].ToString() == PassDateCre)
                     {
-                        
-
-                        switch (dataRow["METHOD"].ToString())
-                        {
-                            case "TNR": checkdtAdd = false; check = true; if (dataRow["PACK_TYPE"].ToString() == "REEL") { Type = "TNR"; } else { Type= "Another2"; }; break;
-                            case "TRA": checkdtAdd = false; check = true; if (dataRow["PACK_TYPE"].ToString() == "TRAY") { Type = "TRA"; } else { Type = "Another2"; }; break;
-                            case "WAF":
-                                checkdtAdd = false; check = true; if (dataRow["PACK_TYPE"].ToString() == "WAFER BOX") { Type = "WAF"; }
-                                else
-                                {
-                                    Type = "Another2";
-                                }; break;
-                            case "RAI": checkdtAdd = false; check = true; if (dataRow["PACK_TYPE"].ToString() == "TUBE" || dataRow["PACK_TYPE"].ToString() == "FILM FRAME") { Type = "RAI"; } else { Type = "Another2"; }; break;
-                            case "CAN": checkdtAdd = false; check = true; if (dataRow["PACK_TYPE"].ToString() == "CANISTER") { Type = "CAN"; } else { Type = "Another2"; }; break;
-
-                            default: checkdtAdd = false;  if (check == false) { Type = "Another"; } break;
-                        }
+                        Type = "Another";
                     }
+                    else { 
+                    switch (dataRow["METHOD"].ToString())
+                    {
+                        case "TNR": checkdtAdd = false; check = true; if (dataRow["PACK_TYPE"].ToString() == "REEL") { Type = "TNR"; } else { Type = "Another2"; }; break;
+                        case "TRA": checkdtAdd = false; check = true; if (dataRow["PACK_TYPE"].ToString() == "TRAY") { Type = "TRA"; } else { Type = "Another2"; }; break;
+                        case "WAF":
+                            checkdtAdd = false; check = true; if (dataRow["PACK_TYPE"].ToString() == "WAFER BOX") { Type = "WAF"; }
+                            else
+                            {
+                                Type = "Another2";
+                            }; break;
+                        case "RAI": checkdtAdd = false; check = true; if (dataRow["PACK_TYPE"].ToString() == "TUBE" || dataRow["PACK_TYPE"].ToString() == "FILM FRAME") { Type = "RAI"; } else { Type = "Another2"; }; break;
+                        case "CAN": checkdtAdd = false; check = true; if (dataRow["PACK_TYPE"].ToString() == "CANISTER") { Type = "CAN"; } else { Type = "Another2"; }; break;
+
+                        case "":
+                            if (/*dataRow["HTB"].ToString() != "" &&*/ (PassID == dataRow["PACK_ID"].ToString() && ItemSet != dataRow["PACK_REV"].ToString()) || (PassID != dataRow["PACK_ID"].ToString()) || PassID == dataRow["PACK_ID"].ToString() && ItemSet == dataRow["PACK_REV"].ToString() && dataRow["CREATE_DATE"].ToString() != PassDateCre)
+                            {
+                                checkdtAdd = false; check = true;
+                                if (dataRow["PACK_TYPE"].ToString() == "REEL" || dataRow["PACK_TYPE"].ToString() == "TRAY" || dataRow["PACK_TYPE"].ToString() == "TUBE" || dataRow["PACK_TYPE"].ToString() == "FILM FRAME" || dataRow["PACK_TYPE"].ToString() == "CANISTER")
+                                {
+                                    if (dataRow["PACK_TYPE"].ToString() == "REEL")
+                                    {
+                                        Type = "TNR";
+                                    }
+                                    if (dataRow["PACK_TYPE"].ToString() == "TRAY")
+                                    { Type = "TRA"; }
+                                    if (dataRow["PACK_TYPE"].ToString() == "WAFER BOX")
+                                    { Type = "WAF"; }
+                                    if (dataRow["PACK_TYPE"].ToString() == "TUBE" || dataRow["PACK_TYPE"].ToString() == "FILM FRAME")
+                                    { Type = "RAI"; }
+                                    if (dataRow["PACK_TYPE"].ToString() == "CANISTER")
+                                    { Type = "CAN"; }
+                                }
+
+                                else { Type = "Another2"; }
+                            }
+                            else { checkdtAdd = false; if (check == false) { Type = "Another"; } }
+                            break;
+                        default: checkdtAdd = false; if (check == false) { Type = "Another"; } break;
+                    }
+                }
+                    }
+                    if(loop==1 && dataRow["SEQ_NO"].ToString() !="1" && Type=="Another" && check == false &&
+                checkdtAdd == true &&
+                sideTye == "" )
+                {
+                    if (PassID == dataRow["PACK_ID"].ToString() && ItemSet != dataRow["PACK_REV"].ToString())
+                    {
+                        Type = "Another2";
+                    }
+                    if (PassID != dataRow["PACK_ID"].ToString())
+                    {
+                        Type = "Another2";
+
+                    }
+                }
+                    
+                    
                     #endregion
 
                     #region CAN
                     //ถูก 88% 
                     if (Type == "CAN")
                     {
-                        if (A == dataRow["PACK_ID"].ToString())
+                        if (A == dataRow["PACK_ID"].ToString() &&dataRow["PACK_REV"].ToString()==ItemSet && checkdtAdd != true)
                         {
                             loop = loop + 1;
                             checkpassOnce = true;
@@ -365,14 +465,14 @@ namespace KeyInDataWIPackWinApp
                         }
 
                         A = dataRow["PACK_ID"].ToString();
-                        if (loop == 1)
+                        if (loop == 1&&dataRow["PACK_TYPE"].ToString()== "CANISTER")
                         {
                             dr = dt_result.NewRow();//OPR
                             ds = dt_result.NewRow();//PackOUT
                             checkpassOnce = false;
                             checkdtAdd = false;
-                            dr["WI_PACK_ID"] = dataRow["PACK_ID"].ToString() + "_OPTN";
-                            ds["WI_PACK_ID"] = dataRow["PACK_ID"].ToString();
+                            dr["WI_PACK_ID"] = dataRow["PACK_ID"].ToString() +"_"+ dataRow["PACK_REV"].ToString() + "_OPTN";
+                            ds["WI_PACK_ID"] = dataRow["PACK_ID"].ToString()+"_"+dataRow["PACK_REV"].ToString();
                             dr["WI_TYPE"] = "Generic";
 
                             dr["DESCRIPTION"] = dataRow["PACK_DESCRIPTION"].ToString();
@@ -427,15 +527,19 @@ namespace KeyInDataWIPackWinApp
                         {
                             ds["L3_QTY_UNIT_PER_BOX"] = dataRow["UNIT"].ToString();
 
-                            
+                            //if(checkdtAdd != true) { 
 
                             dt_result.Rows.Add(ds);
                             dt_result.Rows.Add(dr);
+                        CountCAN = CountCAN + 1;
                             loop = 1;
                             check = false;
                             checkdtAdd = true;
-                        }
+                        Type = "Another";
+
+                        //}
                     }
+                }
                     #endregion
                     #region RAI
                     //ถูก 88%
@@ -443,7 +547,7 @@ namespace KeyInDataWIPackWinApp
                     {
                         if(dataRow["PACK_TYPE"].ToString() == "FILM FRAME" || sideTye== "FILM FRAME")
                         {
-                            if (A == dataRow["PACK_ID"].ToString())
+                            if (A == dataRow["PACK_ID"].ToString() && dataRow["PACK_REV"].ToString() == ItemSet && checkdtAdd != true && dataRow["SEQ_NO"].ToString() != "1")
                             {
                                 loop = loop + 1;
                                 checkpassOnce = true;
@@ -458,9 +562,9 @@ namespace KeyInDataWIPackWinApp
 
                                 dr = dt_result.NewRow();
                                 ds = dt_result.NewRow();
-                                dr["WI_PACK_ID"] = dataRow["PACK_ID"].ToString();
-                                ds["WI_PACK_ID"] = dataRow["PACK_ID"].ToString() + "_OPTN";
-                                dr["WI_TYPE"] = "Generic";
+                                dr["WI_PACK_ID"] = dataRow["PACK_ID"].ToString() + "_" + dataRow["PACK_REV"].ToString();
+                                ds["WI_PACK_ID"] = dataRow["PACK_ID"].ToString() + "_" + dataRow["PACK_REV"].ToString() + "_OPTN";
+                            dr["WI_TYPE"] = "Generic";
                                 dr["DESCRIPTION"] = dataRow["PACK_DESCRIPTION"].ToString();
                                 dr["INSTRUC_OPTN"] = "Pack Out";
                                 dr["PACKOUT_TYPE"] = "Wafer";
@@ -526,17 +630,19 @@ namespace KeyInDataWIPackWinApp
                                 
                                 dt_result.Rows.Add(dr);
                                 dt_result.Rows.Add(ds);
-
-                                loop = 1;
+                            CountWAF = CountWAF + 1;
+                            loop = 1;
                                 check = false;
                                 checkdtAdd = true;
                                 sideTye = "";
-                            }
+                            Type = "Another";
+
                         }
+                    }
 
                         if (dataRow["PACK_TYPE"].ToString() == "TUBE" || sideTye == "TUBE")
                         {
-                            if (B == dataRow["PACK_ID"].ToString())
+                            if (B == dataRow["PACK_ID"].ToString() && dataRow["PACK_REV"].ToString() == ItemSet && checkdtAdd != true && sideTye!="")
                             {
                                 loop = loop + 1;
                                 checkpassOnce = true;
@@ -553,9 +659,9 @@ namespace KeyInDataWIPackWinApp
                                 dr = dt_result.NewRow();//OPR
                                 ds = dt_result.NewRow();//PackOUT
 
-                                dr["WI_PACK_ID"] = dataRow["PACK_ID"].ToString() + "_OPTN";
-                                ds["WI_PACK_ID"] = dataRow["PACK_ID"].ToString();
-                                dr["WI_TYPE"] = "Generic";
+                                dr["WI_PACK_ID"] = dataRow["PACK_ID"].ToString() + "_" + dataRow["PACK_REV"].ToString() + "_OPTN";
+                            ds["WI_PACK_ID"] = dataRow["PACK_ID"].ToString() + "_" + dataRow["PACK_REV"].ToString();
+                            dr["WI_TYPE"] = "Generic";
                                 dr["DESCRIPTION"] = dataRow["PACK_DESCRIPTION"].ToString();
                                 dr["INSTRUC_OPTN"] = "Tube";
 
@@ -633,13 +739,15 @@ namespace KeyInDataWIPackWinApp
 
                                 dt_result.Rows.Add(ds);
                                 dt_result.Rows.Add(dr);
-                                loop = 1;
+                            CountRAI = CountRAI + 1;
+                            loop = 1;
                                 check = false;
                                 checkdtAdd = true;
                                 sideTye = "";
+                            Type = "Another";
 
-                            }
                         }
+                    }
                     }
                     #endregion
                     #region WAF
@@ -647,7 +755,7 @@ namespace KeyInDataWIPackWinApp
 
                     if (Type == "WAF")
                     {
-                        if (A == dataRow["PACK_ID"].ToString())
+                        if (A == dataRow["PACK_ID"].ToString() && dataRow["PACK_REV"].ToString() == ItemSet && checkdtAdd != true && dataRow["SEQ_NO"].ToString() != "1")
                         {
                             loop = loop + 1; checkpassOnce = true;
 
@@ -660,9 +768,9 @@ namespace KeyInDataWIPackWinApp
                             ds = dt_result.NewRow();//OPT
                             checkpassOnce = false;
                             checkdtAdd = false;
-                            ds["WI_PACK_ID"] = dataRow["PACK_ID"].ToString() + "_OPTN";
-                            dr["WI_PACK_ID"] = dataRow["PACK_ID"].ToString();
-                            dr["WI_TYPE"] = "Generic";
+                            ds["WI_PACK_ID"] = dataRow["PACK_ID"].ToString() +"_" + dataRow["PACK_REV"].ToString() + "_OPTN";
+                        dr["WI_PACK_ID"] = dataRow["PACK_ID"].ToString() +"_" + dataRow["PACK_REV"].ToString() ;
+                        dr["WI_TYPE"] = "Generic";
                             dr["DESCRIPTION"] = dataRow["PACK_DESCRIPTION"].ToString();
                             dr["INSTRUC_OPTN"] = "Pack Out";
                             dr["PACKOUT_TYPE"] = "Wafer";
@@ -727,17 +835,20 @@ namespace KeyInDataWIPackWinApp
                        
                         if (dataRow["PACK_TYPE"].ToString() == "BAG")
                         {
-
+                        if (dataRow["UNIT"].ToString() != "")
+                        {
                             dr["L2_QTY_WF_BOX_PER_BAG"] = Convert.ToString(Convert.ToInt32(dataRow["UNIT"].ToString()) / Convert.ToInt32(dr["L1_UNIT_PER_WF_BOX"]));
-
+                        }
                             //dr["L2_QTY_WF_BOX_PER_BAG"] = dataRow["PACK_QTY"].ToString();
                         }
                         if (dataRow["PACK_TYPE"].ToString() == "BOX")
                         {
+                        if (dataRow["UNIT"].ToString() != "")
+                        {
                             dr["L3_QTY_UNIT_PER_BOX"] = dataRow["UNIT"].ToString();//unit per box
 
                             dr["L3_QTY_WF_BOX_PER_BOX"] = Convert.ToString(Convert.ToInt32(dr["L3_QTY_UNIT_PER_BOX"]) / Convert.ToInt32(dr["L1_UNIT_PER_WF_BOX"]));
-
+                        }
                             //dr["L3_QTY_WF_BOX_PER_BOX"] = dataRow["PACK_QTY"].ToString();//qty
 
                             //if (dr["L2_QTY_WF_BOX_PER_BAG"].ToString() != "")
@@ -754,22 +865,24 @@ namespace KeyInDataWIPackWinApp
 
                             dt_result.Rows.Add(dr);
                             dt_result.Rows.Add(ds);//Operation
-                           
 
+                        CountWAF = CountWAF + 1;
 
 
 
                         loop = 1;
                         check = false;
                             checkdtAdd = true;
-                        }
+                        Type = "Another";
+
+                    }
                 }
                     #endregion
                     #region TRA
                     //ถูก 60% มีข้อมูลที่ไม่ทราบที่มา และ ข้อมูล OPRT ที่ไม่มีต้นแบบ
                     if (Type == "TRA")
                     {
-                        if (A == dataRow["PACK_ID"].ToString())
+                        if (A == dataRow["PACK_ID"].ToString() && dataRow["PACK_REV"].ToString() == ItemSet && checkdtAdd != true && dataRow["SEQ_NO"].ToString() != "1")
                         {
                             loop = loop + 1; checkpassOnce = true;
 
@@ -777,18 +890,19 @@ namespace KeyInDataWIPackWinApp
 
                         A = dataRow["PACK_ID"].ToString();
 
-                        if (loop == 1)
+                        if (loop == 1 && dataRow["PACK_TYPE"].ToString() == "TRAY")
                         {
+                        LevelCOunt = 0;
                             dr = dt_result.NewRow();
                             ds = dt_result.NewRow();
 
                             checkpassOnce = false;
                             checkdtAdd = false;
-                            dr["WI_PACK_ID"] = dataRow["PACK_ID"].ToString();
-                            ds["WI_PACK_ID"] = dataRow["PACK_ID"].ToString() +"_OPTN";
+                        dr["WI_PACK_ID"] = dataRow["PACK_ID"].ToString() + "_" + dataRow["PACK_REV"].ToString();
+                        ds["WI_PACK_ID"] = dataRow["PACK_ID"].ToString() + "_" + dataRow["PACK_REV"].ToString() + "_OPTN";
 
 
-                            dr["WI_TYPE"] = "Generic";
+                        dr["WI_TYPE"] = "Generic";
                             dr["DESCRIPTION"] = dataRow["PACK_DESCRIPTION"].ToString();
                             dr["INSTRUC_OPTN"] = "Pack Out";
                             dr["L1_UNIT_PER_TRAY"] = dataRow["UNIT"].ToString();
@@ -844,20 +958,16 @@ namespace KeyInDataWIPackWinApp
                             ds["UNIQUE_ID"] = "0";
                             ds["STATUS"] = "1";
                             ds["PACKOUT_TYPE"] = "Tray";
-
+                        LevelCOunt = LevelCOunt + 1;
                         }
                         if (dataRow["PACK_TYPE"].ToString() == "BAG")
                         {
+                        LevelCOunt = LevelCOunt + 1;
 
-
-                            dr["L2_QTY_REEL_PER_BAG"] = dataRow["PACK_QTY"].ToString();//this is Tray per Bag
-
-                            //dr["L3_QTY_UNIT_PER_BOX"] = dataRow["PACK_QTY"].ToString();
-                        }
-                        if (dataRow["PACK_TYPE"].ToString() == "BOX")
+                        dr["L2_QTY_REEL_PER_BAG"] = dataRow["PACK_QTY"].ToString();//this is Tray per Bag
+                        if (LevelCOunt == 3)
                         {
-                            dr["L3_QTY_BAG_PER_BOX"] = dataRow["PACK_QTY"].ToString();
-                            if (dataRow["UNIT"].ToString() != "")
+                            if (dr["L3_QTY_BAG_PER_BOX"].ToString() != "" && dr["L2_QTY_REEL_PER_BAG"].ToString() != "")
                             {
                                 dr["L3_QTY_UNIT_PER_BOX"] = Convert.ToString(Convert.ToInt32(dr["L3_QTY_BAG_PER_BOX"]) * Convert.ToInt32(dr["L2_QTY_REEL_PER_BAG"]));
                             }
@@ -865,19 +975,55 @@ namespace KeyInDataWIPackWinApp
                             {
                                 dr["L3_QTY_UNIT_PER_BOX"] = dr["L2_QTY_REEL_PER_BAG"].ToString();
                             }
-                            //else
-                            //{
-                            //    dr["L3_QTY_UNIT_PER_BOX"] = dr["L2_QTY_REEL_PER_BAG"];
-                            //}
-
-                            //Loop9
-
                             dt_result.Rows.Add(dr);
                             dt_result.Rows.Add(ds);
+                            CountTRA = CountTRA + 1;
                             loop = 1;
                             check = false;
                             checkdtAdd = true;
+                            Type = "Another";
+
                         }
+
+                        //dr["L3_QTY_UNIT_PER_BOX"] = dataRow["PACK_QTY"].ToString();
+                    }
+                        if (dataRow["PACK_TYPE"].ToString() == "BOX")
+                        {
+                        LevelCOunt = LevelCOunt + 1;
+
+                        dr["L3_QTY_BAG_PER_BOX"] = dataRow["PACK_QTY"].ToString();
+                            if (dataRow["UNIT"].ToString() != "")
+                            {
+
+                            if (dr["L3_QTY_BAG_PER_BOX"].ToString() != "" && dr["L2_QTY_REEL_PER_BAG"].ToString() != "")
+                            {
+                                dr["L3_QTY_UNIT_PER_BOX"] = Convert.ToString(Convert.ToInt32(dr["L3_QTY_BAG_PER_BOX"]) * Convert.ToInt32(dr["L2_QTY_REEL_PER_BAG"]));
+                            }
+
+                          
+                        }
+                            else
+                            {
+                                dr["L3_QTY_UNIT_PER_BOX"] = dr["L2_QTY_REEL_PER_BAG"].ToString();
+                            }
+                        //else
+                        //{
+                        //    dr["L3_QTY_UNIT_PER_BOX"] = dr["L2_QTY_REEL_PER_BAG"];
+                        //}
+
+                        //Loop9
+                        if (LevelCOunt == 3)
+                        {
+                            dt_result.Rows.Add(dr);
+                            dt_result.Rows.Add(ds);
+                            CountTRA = CountTRA + 1;
+                            loop = 1;
+                            check = false;
+                            checkdtAdd = true;
+                            Type = "Another";
+
+                        }
+                    }
                         //if (dataRow["PACK_TYPE"].ToString() == "QUADRANT")
                         //{
                         //    switch (dataRow["STOCK_NO"].ToString())
@@ -896,51 +1042,32 @@ namespace KeyInDataWIPackWinApp
                         //}
 
                     }
-                    if (Type == "Another")
-                    {
-                        
-                        loop = 1;
-                        
-                    }
-                    if (Type == "Another2")
-                    {
-                        if (loop == 1)
-                        {
-                            dr = dt_result.NewRow();
-
-                            dr["WI_PACK_ID"] = "ERROR On " + dataRow["PACK_ID"].ToString() + " Method=" + dataRow["METHOD"].ToString() + " TypeT =" + dataRow["PACK_TYPE"].ToString();
-                            dt_result.Rows.Add(dr);
-                            check = false;
-                            checkdtAdd = true;
-
-                            loop = 1;
-                        }
-                    }
+                    
                     #endregion
                     #region TNR
                     //ถูก 90% ต้นแบบละเอียด
                     if (Type == "TNR")
                     {
-                        if (A == dataRow["PACK_ID"].ToString())
+                        if (A == dataRow["PACK_ID"].ToString() && dataRow["PACK_REV"].ToString() == ItemSet && checkdtAdd != true && dataRow["SEQ_NO"].ToString() !="1")
                         {
                             loop = loop + 1; checkpassOnce = true;
 
                         }
 
                         A = dataRow["PACK_ID"].ToString();
-                        if (loop == 1)
+                        if (loop == 1 && dataRow["PACK_TYPE"].ToString() == "REEL")
                         {
                             checkpassOnce = false;
                             checkdtAdd = false;
 
                             dr = dt_result.NewRow();
                             ds = dt_result.NewRow();
-                            dr["WI_PACK_ID"] = dataRow["PACK_ID"].ToString() + "_OPTN";
-                            ds["WI_PACK_ID"] = dataRow["PACK_ID"].ToString();
+                            dr["WI_PACK_ID"] = dataRow["PACK_ID"].ToString() + "_" + dataRow["PACK_REV"].ToString() + "_OPTN";
+                        ds["WI_PACK_ID"] = dataRow["PACK_ID"].ToString() + "_" + dataRow["PACK_REV"].ToString();
 
                             dr["WI_TYPE"] = "Generic";
                             dr["DESCRIPTION"] = dataRow["PACK_DESCRIPTION"].ToString();
-                            dr["INSTRUC_OPTN"] = dataRow["METHOD"].ToString();
+                        dr["INSTRUC_OPTN"] = "TNR";
                             if (dataRow["HTB"].ToString() == "IMMED")
                             {
                                 dr["HTB"] = "P";
@@ -1039,12 +1166,50 @@ namespace KeyInDataWIPackWinApp
 
                             dt_result.Rows.Add(ds);
                             dt_result.Rows.Add(dr);
+                        CountTNR = CountTNR + 1;
                             loop = 1;
                             check = false;
                             checkdtAdd = true;
+                        Type = "Another";
+
+                    }
+                }
+                    #endregion
+                    if (Type == "Another")
+                    {
+
+                        loop = 1;
+
+                    }
+                    #region ERROR
+
+                    if (Type == "Another2")
+                    {
+                        if (loop == 1 /*&& dataRow["PACK_REV"].ToString() != ItemSet && dataRow["PACK_ID"].ToString() != PassID*/)
+                        {
+                            dr = dt_result.NewRow();
+                        if (dataRow["SEQ_NO"].ToString()!="1")
+                        {
+                            dr["WI_PACK_ID"] = "ERROR On " + dataRow["PACK_ID"].ToString() + "_" + dataRow["PACK_REV"].ToString() +" Seq="+ dataRow["SEQ_NO"].ToString() + " Method=" + dataRow["METHOD"].ToString() + " TypeT =" + dataRow["PACK_TYPE"].ToString();
+                        }
+                        else
+                        {
+                            dr["WI_PACK_ID"] = "ERROR On " + dataRow["PACK_ID"].ToString() + "_" + dataRow["PACK_REV"].ToString() + " Method=" + dataRow["METHOD"].ToString() + " TypeT =" + dataRow["PACK_TYPE"].ToString();
+                        }
+                        getErrorPoint = getErrorPoint  + dr["WI_PACK_ID"].ToString()+ "\n";
+                            errorCount=errorCount + 1;
+                            dt_result.Rows.Add(dr);
+                            check = false;
+                            checkdtAdd = true;
+                        Type = "Another";
+                            loop = 1;
                         }
                     }
                     #endregion
+                    ItemSet = dataRow["PACK_REV"].ToString();
+                PassID = dataRow["PACK_ID"].ToString();
+                PassSEQ = dataRow["SEQ_NO"].ToString();
+                PassDateCre = dataRow["CREATE_DATE"].ToString();
                 }
                 #region Last Value 2
                 //last
@@ -1053,54 +1218,60 @@ namespace KeyInDataWIPackWinApp
 
                     switch (Type)
                     {
-                        case "CAN":
+                    case "CAN":
+
+                        dt_result.Rows.Add(ds);
+                        dt_result.Rows.Add(dr);
+                        CountCAN = CountCAN + 1;
+                        break;
+                    case "TNR":
+
+                        dt_result.Rows.Add(ds);
+                        dt_result.Rows.Add(dr); CountTNR = CountTNR + 1
+                         ; break;
+                    case "TRA":
+
+                        dt_result.Rows.Add(dr);
+                        dt_result.Rows.Add(ds); CountTRA = CountTRA + 1; break;
+
+                    case "WAF":
+
+
+                        dt_result.Rows.Add(dr);
+                        dt_result.Rows.Add(ds); CountWAF = CountWAF + 1; break;
+                    case "RAI":
+                        if (sideTye == "FILM FRAME")
+                        {
+                            dt_result.Rows.Add(dr);
 
                             dt_result.Rows.Add(ds);
-                            dt_result.Rows.Add(dr); break;
-                        case "TNR":
+                            CountWAF = CountWAF + 1;
+                        }
+                        if (sideTye == "TUBE")
+                        {
 
                             dt_result.Rows.Add(ds);
                             dt_result.Rows.Add(dr);
-                            ; break;
-                        case "TRA":
+                            CountRAI = CountRAI + 1;
+                        }
 
-                            dt_result.Rows.Add(dr); break;
-                        case "WAF":
-
-
-                            dt_result.Rows.Add(dr);
-                            dt_result.Rows.Add(ds); break;
-                        case "RAI":
-                            if (sideTye == "FILM FRAME")
-                            {
-                                dt_result.Rows.Add(dr);
-                            }
-                            if (sideTye == "TUBE")
-                            {
-
-                                dt_result.Rows.Add(ds);
-                                dt_result.Rows.Add(dr);
-                            }
-                            break;
+                        break;
 
 
-                    }
-                    loop = 1;
-                    check = false;
-                    checkdtAdd = true;
-                    sideTye = "";
                 }
-                #endregion
-                //forthe last error
-                #endregion
+                    
+                }
+            #endregion
+            //forthe last error
+            #endregion
+            ERRORget = "ALLItemSEQ1 ="+countItem.ToString()+"\n CAN ="+CountCAN.ToString()+"\n TNR =" + CountTNR.ToString()+"\n TRA =" + CountTRA.ToString()+"\n WAF =" + CountWAF.ToString() + "\n RAI =" + CountRAI.ToString()  + "\n Error value Count = " + errorCount.ToString() + "\n" + getErrorPoint.ToString();
+            dataGridViewOutput.DataSource = dt_result;
+            //}
+            //catch (Exception ex)
+            //{
 
-                dataGridViewOutput.DataSource = dt_result;
-            }
-            catch (Exception ex)
-            {
-
-                MessageBox.Show(ex.Message);
-            }
+            //    MessageBox.Show(ex.Message);
+            //}
         }
 
         #region Export
@@ -1125,6 +1296,15 @@ namespace KeyInDataWIPackWinApp
 
                             var fullpath = @fbd.SelectedPath + "\\" + filename + ".xlsx";
                             workbook.SaveAs(fullpath);
+
+                            using (FileStream fs = File.Create(@fbd.SelectedPath + "\\" + filename +" ERROR"+".txt"))
+                            {
+                                // Add some text to file    
+                                Byte[] title = new UTF8Encoding(true).GetBytes(ERRORget);
+                                fs.Write(title, 0, title.Length);
+                                
+                            }
+
                             MessageBox.Show("SAVE to " + fbd.SelectedPath);
 
 
