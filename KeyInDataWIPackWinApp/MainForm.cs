@@ -28,11 +28,11 @@ namespace KeyInDataWIPackWinApp
         {
             string filePath = string.Empty;
             string fileExt = string.Empty;
-            OpenFileDialog file = new OpenFileDialog(); //open dialog to choose file  
-            if (file.ShowDialog() == System.Windows.Forms.DialogResult.OK) //if there is a file choosen by the user  
+            OpenFileDialog file = new OpenFileDialog(); 
+            if (file.ShowDialog() == System.Windows.Forms.DialogResult.OK) 
             {
-                filePath = file.FileName; //get the path of the file  
-                fileExt = Path.GetExtension(filePath); //get the file extension  
+                filePath = file.FileName; 
+                fileExt = Path.GetExtension(filePath); 
                 if (fileExt.CompareTo(".xls") == 0 || fileExt.CompareTo(".xlsx") == 0)
                 {
                     try
@@ -47,7 +47,7 @@ namespace KeyInDataWIPackWinApp
                 }
                 else
                 {
-                    MessageBox.Show("Please choose .xls or .xlsx file only.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Error); //custom messageBox to show error  
+                    MessageBox.Show("Please choose .xls or .xlsx file only.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Error);  
                 }
 
             }
@@ -99,8 +99,8 @@ namespace KeyInDataWIPackWinApp
         private void bynStart_Click(object sender, EventArgs e)
         {
             dt_result = new DataTable();
-            //try
-            //{
+            try
+            {
 
                 #region setcolumn
                 try
@@ -285,10 +285,10 @@ namespace KeyInDataWIPackWinApp
                 {
                     countItem = countItem + 1;
                 }
-                if (dataRow["PACK_ID"].ToString() == "ATIU008" && dataRow["PACK_REV"].ToString() == "A")
-                {
-                    string aaaad = "";
-                }
+                //if (dataRow["PACK_ID"].ToString() == "ATIU008" && dataRow["PACK_REV"].ToString() == "A")
+                //{
+                //    string aaaad = "";
+                //}
                     checksideType = false;
                     #region Last Value 1
                     if ((A != dataRow["PACK_ID"].ToString() || ItemSet !=dataRow["PACK_REV"].ToString() ) )
@@ -381,10 +381,6 @@ namespace KeyInDataWIPackWinApp
                     }
                 }
                 #endregion
-
-
-
-
 
                 #region checktype
                 if (loop == 1 && dataRow["SEQ_NO"].ToString() == "1") //use type for case
@@ -957,7 +953,7 @@ namespace KeyInDataWIPackWinApp
                             ds["UPDATED_DATE"] = mytime;
                             ds["UNIQUE_ID"] = "0";
                             ds["STATUS"] = "1";
-                            ds["PACKOUT_TYPE"] = "Tray";
+                            //ds["PACKOUT_TYPE"] = "Tray";
                         LevelCOunt = LevelCOunt + 1;
                         }
                         if (dataRow["PACK_TYPE"].ToString() == "BAG")
@@ -1261,17 +1257,20 @@ namespace KeyInDataWIPackWinApp
                 }
                     
                 }
-            #endregion
-            //forthe last error
-            #endregion
-            ERRORget = "ALLItemSEQ1 ="+countItem.ToString()+"\n CAN ="+CountCAN.ToString()+"\n TNR =" + CountTNR.ToString()+"\n TRA =" + CountTRA.ToString()+"\n WAF =" + CountWAF.ToString() + "\n RAI =" + CountRAI.ToString()  + "\n Error value Count = " + errorCount.ToString() + "\n" + getErrorPoint.ToString();
+                #endregion
+                //forthe last error
+                #endregion
+                int resultROW = dt_result.Rows.Count;
+                int ItemsSuccess = (resultROW - errorCount) / 2;
+                string AllItems = Convert.ToString(ItemsSuccess + errorCount);
+            ERRORget = "ALLItem ="+AllItems+"\n ItemsGenSuccess = "+ItemsSuccess.ToString()+"\n CAN ="+CountCAN.ToString()+"\n TNR =" + CountTNR.ToString()+"\n TRA =" + CountTRA.ToString()+"\n WAF =" + CountWAF.ToString() + "\n RAI =" + CountRAI.ToString()  + "\n Error value Count = " + errorCount.ToString() + "\n" + getErrorPoint.ToString();
             dataGridViewOutput.DataSource = dt_result;
-            //}
-            //catch (Exception ex)
-            //{
+            }
+            catch (Exception ex)
+            {
 
-            //    MessageBox.Show(ex.Message);
-            //}
+                MessageBox.Show(ex.Message);
+            }
         }
 
         #region Export
@@ -1326,15 +1325,18 @@ namespace KeyInDataWIPackWinApp
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            mytime = DateTime.Now.ToString("R");
-            mytime = mytime.Substring(5);
-            string[] timeS = mytime.Split(' ');
-            timeS[1] = timeS[1].ToUpper();
-            timeS[2] = Convert.ToString(Convert.ToInt32(timeS[2]) % 100);
-            var timeList = timeS.ToList();
-            timeList.Remove(timeS[3]);
-            timeList.Remove(timeS[4]);
-            mytime = String.Join("-", timeList);
+            //mytime = DateTime.Now.ToString("R");
+            //mytime = mytime.Substring(5);
+            //string[] timeS = mytime.Split(' ');
+            //timeS[1] = timeS[1].ToUpper();
+            //timeS[2] = Convert.ToString(Convert.ToInt32(timeS[2]) % 100);
+            //var timeList = timeS.ToList();
+            //timeList.Remove(timeS[3]);
+            //timeList.Remove(timeS[4]);
+            //mytime = String.Join("-", timeList);
+            //MessageBox.Show(mytime + "   " + DateTime.Now.ToString("dd-MMM-yy").ToUpper());
+            mytime = DateTime.Now.ToString("dd-MMM-yy").ToUpper();
+            MessageBox.Show("Welcome to WI Pack Migration Data ,\nToday is "+mytime+" \n Have A Good Day.");
         }
 
         private void tbFile_TextChanged(object sender, EventArgs e)
