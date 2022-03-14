@@ -57,6 +57,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_93E3F713AEC640088ED1BEF7BFFC4D48"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_A15E21CF08EA8C7E2769C813F95DB106"
         "OwnerKey" = "8:_70F4939410794A0B9D3396245BF27F8F"
         "MsmSig" = "8:_UNDEFINED"
@@ -381,6 +387,26 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_93E3F713AEC640088ED1BEF7BFFC4D48"
+            {
+            "SourcePath" = "8:C:\\Users\\ASUS\\Downloads\\3407407-200.ico"
+            "TargetName" = "8:3407407-200.ico"
+            "Tag" = "8:"
+            "Folder" = "8:_9D07C42431D147F0BD2A7361050B5E6D"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_A15E21CF08EA8C7E2769C813F95DB106"
             {
             "AssemblyRegister" = "3:1"
@@ -593,7 +619,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:SetupGenWI"
         "ProductCode" = "8:{9AED2354-51C4-4555-978D-FFCF126FCB3A}"
-        "PackageCode" = "8:{D484E863-DDE7-46E4-A1D7-76A0CF858DBF}"
+        "PackageCode" = "8:{4E0376F7-43E9-4C6E-895B-E3BF010E8613}"
         "UpgradeCode" = "8:{DE4DFF89-3CCB-4F8B-89A1-A4CBCE4FEF41}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -724,7 +750,7 @@
             "Target" = "8:_70F4939410794A0B9D3396245BF27F8F"
             "Folder" = "8:_E1577EB8F05A4EC6955FA85E668B5011"
             "WorkingFolder" = "8:_9D07C42431D147F0BD2A7361050B5E6D"
-            "Icon" = "8:"
+            "Icon" = "8:_93E3F713AEC640088ED1BEF7BFFC4D48"
             "Feature" = "8:"
             }
         }
