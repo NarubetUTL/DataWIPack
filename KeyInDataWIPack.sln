@@ -5,6 +5,8 @@ VisualStudioVersion = 16.0.30503.244
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KeyInDataWIPackWinApp", "KeyInDataWIPackWinApp\KeyInDataWIPackWinApp.csproj", "{CFA23CC4-182A-4BAB-9803-F61A3758C2F2}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "SetupGenWI", "SetupGenWI\SetupGenWI.vdproj", "{17FA187F-E3B6-4399-BBA6-A9A4CBF495C7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,8 @@ Global
 		{CFA23CC4-182A-4BAB-9803-F61A3758C2F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CFA23CC4-182A-4BAB-9803-F61A3758C2F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CFA23CC4-182A-4BAB-9803-F61A3758C2F2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{17FA187F-E3B6-4399-BBA6-A9A4CBF495C7}.Debug|Any CPU.ActiveCfg = Debug
+		{17FA187F-E3B6-4399-BBA6-A9A4CBF495C7}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
