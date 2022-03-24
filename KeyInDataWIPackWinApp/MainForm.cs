@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using ExcelDataReader;
 using System.IO;
+using System.Reflection;
 using ClosedXML.Excel;
 
 namespace KeyInDataWIPackWinApp
@@ -1500,6 +1501,13 @@ namespace KeyInDataWIPackWinApp
             {
                 btnExport.Enabled = true;
             }
+        }
+
+        private void labelExample_Click(object sender, EventArgs e)
+        {
+            string RunningPath = AppDomain.CurrentDomain.BaseDirectory;
+            string FileName = string.Format(Path.GetFullPath(Path.Combine(RunningPath, @"ExampleINPUT\Example Data.xlsx")));
+            tbBrowse.Text = FileName;
         }
     }
 }

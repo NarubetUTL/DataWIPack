@@ -16,7 +16,7 @@
         "Entry"
         {
         "MsmKey" = "8:_448C1A5AF37E5F778C8F1818DA3FE1E2"
-        "OwnerKey" = "8:_70F4939410794A0B9D3396245BF27F8F"
+        "OwnerKey" = "8:_EC8762D92B7F4E2AB77A4C57EC49BE0D"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -28,7 +28,13 @@
         "Entry"
         {
         "MsmKey" = "8:_4F1504DF22031323F53B3CECB028C4EE"
-        "OwnerKey" = "8:_70F4939410794A0B9D3396245BF27F8F"
+        "OwnerKey" = "8:_EC8762D92B7F4E2AB77A4C57EC49BE0D"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_52F072C7140D4769B46445BB3D1AB92D"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -39,14 +45,8 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_70F4939410794A0B9D3396245BF27F8F"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_8DDBE85D9972C6F6F068FA0D41900CF3"
-        "OwnerKey" = "8:_70F4939410794A0B9D3396245BF27F8F"
+        "OwnerKey" = "8:_EC8762D92B7F4E2AB77A4C57EC49BE0D"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -58,13 +58,7 @@
         "Entry"
         {
         "MsmKey" = "8:_91B19C097E27605CEA15332865FFDEFF"
-        "OwnerKey" = "8:_70F4939410794A0B9D3396245BF27F8F"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_93E3F713AEC640088ED1BEF7BFFC4D48"
-        "OwnerKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_EC8762D92B7F4E2AB77A4C57EC49BE0D"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -76,7 +70,7 @@
         "Entry"
         {
         "MsmKey" = "8:_A15E21CF08EA8C7E2769C813F95DB106"
-        "OwnerKey" = "8:_70F4939410794A0B9D3396245BF27F8F"
+        "OwnerKey" = "8:_EC8762D92B7F4E2AB77A4C57EC49BE0D"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -88,13 +82,13 @@
         "Entry"
         {
         "MsmKey" = "8:_A2D97649DDAB621D1155B04C60CFCB09"
-        "OwnerKey" = "8:_70F4939410794A0B9D3396245BF27F8F"
+        "OwnerKey" = "8:_EC8762D92B7F4E2AB77A4C57EC49BE0D"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_B175631F7C72550961A68A5D5518A191"
-        "OwnerKey" = "8:_70F4939410794A0B9D3396245BF27F8F"
+        "OwnerKey" = "8:_EC8762D92B7F4E2AB77A4C57EC49BE0D"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -106,19 +100,31 @@
         "Entry"
         {
         "MsmKey" = "8:_E9FF1EDB199B3278C6F09BC27C32ADB7"
-        "OwnerKey" = "8:_70F4939410794A0B9D3396245BF27F8F"
+        "OwnerKey" = "8:_EC8762D92B7F4E2AB77A4C57EC49BE0D"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_EC8762D92B7F4E2AB77A4C57EC49BE0D"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_F1D68EA377D913D14AA69F5149F343B6"
-        "OwnerKey" = "8:_70F4939410794A0B9D3396245BF27F8F"
+        "OwnerKey" = "8:_EC8762D92B7F4E2AB77A4C57EC49BE0D"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_70F4939410794A0B9D3396245BF27F8F"
+        "OwnerKey" = "8:_F1D68EA377D913D14AA69F5149F343B6"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_EC8762D92B7F4E2AB77A4C57EC49BE0D"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -175,12 +181,6 @@
         "OwnerKey" = "8:_4F1504DF22031323F53B3CECB028C4EE"
         "MsmSig" = "8:_UNDEFINED"
         }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_F1D68EA377D913D14AA69F5149F343B6"
-        "MsmSig" = "8:_UNDEFINED"
-        }
     }
     "Configurations"
     {
@@ -206,6 +206,14 @@
             "PrerequisitesLocation" = "2:1"
             "Url" = "8:"
             "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.7.2"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.7.2 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.7.2"
+                    }
+                }
             }
         }
         "Release"
@@ -230,6 +238,14 @@
             "PrerequisitesLocation" = "2:1"
             "Url" = "8:"
             "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.7.2"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.7.2 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.7.2"
+                    }
+                }
             }
         }
     }
@@ -342,6 +358,26 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_52F072C7140D4769B46445BB3D1AB92D"
+            {
+            "SourcePath" = "8:C:\\Users\\ASUS\\Downloads\\file_archive_folders_icon_193943.ico"
+            "TargetName" = "8:file_archive_folders_icon_193943.ico"
+            "Tag" = "8:"
+            "Folder" = "8:_9D07C42431D147F0BD2A7361050B5E6D"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_60E5FE6665657E2EA82157B6BE672901"
             {
             "AssemblyRegister" = "3:1"
@@ -435,30 +471,10 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_93E3F713AEC640088ED1BEF7BFFC4D48"
-            {
-            "SourcePath" = "8:C:\\Users\\ASUS\\Downloads\\3407407-200.ico"
-            "TargetName" = "8:3407407-200.ico"
-            "Tag" = "8:"
-            "Folder" = "8:_9D07C42431D147F0BD2A7361050B5E6D"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_9A64042008CD4715A12F5AF143A547B5"
             {
             "SourcePath" = "8:..\\..\\..\\LastProject\\WI\\WI PACK คู่มือการใช้งานและอธิบาย Code.pptx"
-            "TargetName" = "8:WI PACK คู่มือการใช้งานและอธิบาย Code.pptx"
+            "TargetName" = "8:WI PACK Manual.pptx"
             "Tag" = "8:"
             "Folder" = "8:_FF781170B30D4E7D86BAD82C040B337A"
             "Condition" = "8:"
@@ -660,7 +676,7 @@
                     "{9EF0B969-E518-4E46-987F-47570745A589}:_1D9CCBAAF04D4A5680AA996927463022"
                     {
                     "Name" = "8:ExampleINPUT"
-                    "AlwaysCreate" = "11:FALSE"
+                    "AlwaysCreate" = "11:TRUE"
                     "Condition" = "8:"
                     "Transitive" = "11:FALSE"
                     "Property" = "8:_7B70E1860D914A029E4482F7A5E3CB73"
@@ -671,7 +687,7 @@
                     "{9EF0B969-E518-4E46-987F-47570745A589}:_FF781170B30D4E7D86BAD82C040B337A"
                     {
                     "Name" = "8:Manual"
-                    "AlwaysCreate" = "11:FALSE"
+                    "AlwaysCreate" = "11:TRUE"
                     "Condition" = "8:"
                     "Transitive" = "11:FALSE"
                     "Property" = "8:_C1D07115B5704D87895952BB7D156C44"
@@ -708,15 +724,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:SetupGenWI"
-        "ProductCode" = "8:{9AED2354-51C4-4555-978D-FFCF126FCB3A}"
-        "PackageCode" = "8:{4E0376F7-43E9-4C6E-895B-E3BF010E8613}"
+        "ProductCode" = "8:{2B436FF8-6100-4853-AA81-96011114EE56}"
+        "PackageCode" = "8:{2CCCA4D4-55A4-41C5-89B3-664AD35B1034}"
         "UpgradeCode" = "8:{DE4DFF89-3CCB-4F8B-89A1-A4CBCE4FEF41}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:FALSE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:1.0.0"
+        "ProductVersion" = "8:5.0.0"
         "Manufacturer" = "8:ASUS"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
@@ -829,7 +845,7 @@
         }
         "Shortcut"
         {
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_6F5333AC96D64158A4961E356E978537"
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_20FFB4074EF944AB981695526A5550F1"
             {
             "Name" = "8:GenWI"
             "Arguments" = "8:"
@@ -837,10 +853,10 @@
             "ShowCmd" = "3:1"
             "IconIndex" = "3:0"
             "Transitive" = "11:FALSE"
-            "Target" = "8:_70F4939410794A0B9D3396245BF27F8F"
+            "Target" = "8:_EC8762D92B7F4E2AB77A4C57EC49BE0D"
             "Folder" = "8:_E1577EB8F05A4EC6955FA85E668B5011"
             "WorkingFolder" = "8:_9D07C42431D147F0BD2A7361050B5E6D"
-            "Icon" = "8:_93E3F713AEC640088ED1BEF7BFFC4D48"
+            "Icon" = "8:_52F072C7140D4769B46445BB3D1AB92D"
             "Feature" = "8:"
             }
         }
@@ -1242,7 +1258,7 @@
         }
         "ProjectOutput"
         {
-            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_70F4939410794A0B9D3396245BF27F8F"
+            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_EC8762D92B7F4E2AB77A4C57EC49BE0D"
             {
             "SourcePath" = "8:..\\KeyInDataWIPackWinApp\\obj\\Debug\\KeyInDataWIPackWinApp.exe"
             "TargetName" = "8:"
