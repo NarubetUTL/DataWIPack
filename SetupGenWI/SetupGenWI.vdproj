@@ -21,6 +21,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_47E549A5C168451C842017F20B8B96D0"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_4F1504DF22031323F53B3CECB028C4EE"
         "OwnerKey" = "8:_70F4939410794A0B9D3396245BF27F8F"
         "MsmSig" = "8:_UNDEFINED"
@@ -58,6 +64,12 @@
         "Entry"
         {
         "MsmKey" = "8:_93E3F713AEC640088ED1BEF7BFFC4D48"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_9A64042008CD4715A12F5AF143A547B5"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -101,12 +113,6 @@
         {
         "MsmKey" = "8:_F1D68EA377D913D14AA69F5149F343B6"
         "OwnerKey" = "8:_70F4939410794A0B9D3396245BF27F8F"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_F1D68EA377D913D14AA69F5149F343B6"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -169,6 +175,12 @@
         "OwnerKey" = "8:_4F1504DF22031323F53B3CECB028C4EE"
         "MsmSig" = "8:_UNDEFINED"
         }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_F1D68EA377D913D14AA69F5149F343B6"
+        "MsmSig" = "8:_UNDEFINED"
+        }
     }
     "Configurations"
     {
@@ -187,6 +199,14 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+            }
         }
         "Release"
         {
@@ -203,6 +223,14 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+            }
         }
     }
     "Deployable"
@@ -261,6 +289,26 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_47E549A5C168451C842017F20B8B96D0"
+            {
+            "SourcePath" = "8:..\\..\\..\\LastProject\\WI\\280122\\Example\\Example Data.xlsx"
+            "TargetName" = "8:Example Data.xlsx"
+            "Tag" = "8:"
+            "Folder" = "8:_1D9CCBAAF04D4A5680AA996927463022"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_4F1504DF22031323F53B3CECB028C4EE"
@@ -393,6 +441,26 @@
             "TargetName" = "8:3407407-200.ico"
             "Tag" = "8:"
             "Folder" = "8:_9D07C42431D147F0BD2A7361050B5E6D"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_9A64042008CD4715A12F5AF143A547B5"
+            {
+            "SourcePath" = "8:..\\..\\..\\LastProject\\WI\\WI PACK คู่มือการใช้งานและอธิบาย Code.pptx"
+            "TargetName" = "8:WI PACK คู่มือการใช้งานและอธิบาย Code.pptx"
+            "Tag" = "8:"
+            "Folder" = "8:_FF781170B30D4E7D86BAD82C040B337A"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -589,6 +657,28 @@
             "Property" = "8:TARGETDIR"
                 "Folders"
                 {
+                    "{9EF0B969-E518-4E46-987F-47570745A589}:_1D9CCBAAF04D4A5680AA996927463022"
+                    {
+                    "Name" = "8:ExampleINPUT"
+                    "AlwaysCreate" = "11:FALSE"
+                    "Condition" = "8:"
+                    "Transitive" = "11:FALSE"
+                    "Property" = "8:_7B70E1860D914A029E4482F7A5E3CB73"
+                        "Folders"
+                        {
+                        }
+                    }
+                    "{9EF0B969-E518-4E46-987F-47570745A589}:_FF781170B30D4E7D86BAD82C040B337A"
+                    {
+                    "Name" = "8:Manual"
+                    "AlwaysCreate" = "11:FALSE"
+                    "Condition" = "8:"
+                    "Transitive" = "11:FALSE"
+                    "Property" = "8:_C1D07115B5704D87895952BB7D156C44"
+                        "Folders"
+                        {
+                        }
+                    }
                 }
             }
             "{1525181F-901A-416C-8A58-119130FE478E}:_E1577EB8F05A4EC6955FA85E668B5011"
