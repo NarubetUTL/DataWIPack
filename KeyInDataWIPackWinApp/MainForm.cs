@@ -1509,5 +1509,13 @@ namespace KeyInDataWIPackWinApp
             string FileName = string.Format(Path.GetFullPath(Path.Combine(RunningPath, @"ExampleINPUT\Example Data.xlsx")));
             tbBrowse.Text = FileName;
         }
+
+        private void labelHelp_Click(object sender, EventArgs e)
+        {
+            string RunningPath = AppDomain.CurrentDomain.BaseDirectory;
+            string FileName = string.Format(Path.GetFullPath(Path.Combine(RunningPath, @"Manual\WI PACK Manual.pdf")));
+            System.Diagnostics.Process.Start(FileName);
+
+        }
     }
 }

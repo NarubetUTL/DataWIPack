@@ -41,6 +41,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.dataGridViewInput = new System.Windows.Forms.DataGridView();
             this.labelExample = new System.Windows.Forms.Label();
+            this.labelHelp = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewOutput)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewInput)).BeginInit();
@@ -66,6 +67,7 @@
             this.tableLayoutPanel1.Controls.Add(this.label2, 1, 5);
             this.tableLayoutPanel1.Controls.Add(this.dataGridViewInput, 2, 2);
             this.tableLayoutPanel1.Controls.Add(this.labelExample, 1, 2);
+            this.tableLayoutPanel1.Controls.Add(this.labelHelp, 3, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
@@ -228,6 +230,19 @@
             this.labelExample.Text = "Example Data";
             this.labelExample.Click += new System.EventHandler(this.labelExample_Click);
             // 
+            // labelHelp
+            // 
+            this.labelHelp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelHelp.AutoSize = true;
+            this.labelHelp.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelHelp.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.labelHelp.Location = new System.Drawing.Point(774, 0);
+            this.labelHelp.Name = "labelHelp";
+            this.labelHelp.Size = new System.Drawing.Size(48, 12);
+            this.labelHelp.TabIndex = 13;
+            this.labelHelp.Text = "Manual";
+            this.labelHelp.Click += new System.EventHandler(this.labelHelp_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -263,6 +278,7 @@
         private System.Windows.Forms.DataGridView dataGridViewInput;
         private System.Windows.Forms.DataGridView dataGridViewOutput;
         private System.Windows.Forms.Label labelExample;
+        private System.Windows.Forms.Label labelHelp;
     }
 }
 
